@@ -5,7 +5,7 @@ function App() {
     return(
         <>
             <Nav />
-            <div className="p-5 w-screen flex align-center rounded">
+            <div className="p-5 w-screen flex justify-center rounded">
                 <PlayerCard />
             </div>
         </>
