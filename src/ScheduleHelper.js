@@ -34,24 +34,34 @@ async function ScheduleHelper(seasonId) {
 
 
     //Group matches by Day and Week
-  const grouped = matches.reduce((acc, match) => {
-  const weekKey = `Week ${match.week}`;
-  const dayKey = `Day ${match.day}`;
+ /*  const groupedDays = Object.values(
+  matches.reduce((acc, match) => {
+    if (!acc[match.day]) {
+      acc[match.day] = {
+        day: match.day,
+        matches: [],
+      };
+    }
 
-  if (!acc[weekKey]) {
-    acc[weekKey] = {};
-  }
+    acc[match.day].matches.push(match);
 
-  if (!acc[weekKey][dayKey]) {
-    acc[weekKey][dayKey] = [];
-  }
+    return acc;
+  }, {})
+);
+    */
+    
+   const groupedDays = matches.reduce((acc, match) => {
+    const lastGroup = acc[acc.length - 1];
 
-  acc[weekKey][dayKey].push(match);
+    if (!lastGroup || lastGroup[0].day !== match.day) {
+        acc.push([match]);
+    } else {
+        lastGroup.push(match);
+    }
 
-  return acc;
-}, {});
-
-return grouped;
+    return acc;
+}, []);
+return groupedDays;
 }
 
 

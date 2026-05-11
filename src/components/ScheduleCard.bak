@@ -1,0 +1,60 @@
+import { useEffect, useState } from "react";
+
+import ScheduleHelper from "../ScheduleHelper";
+
+function dailyCard(data) {
+    let i = 0;
+    const fullCard = data.map(day => {
+        const mday = data.length - i;
+        const dailyCard = day.map(match => {
+            let cardHtml = `
+                <div>
+                    <div>${match.hname}</div>
+                    <div> <img src="${match.hlogo}" alt="logo"></img> </div>
+                    <div>${match.host_score}</div>
+                    <div>${match.guest_score}</div>
+                    <div> <img src="${match.glogo}" alt="logo"></img> </div>
+                    <div>${match.gname}</div>
+                </div>
+`;
+            return cardHtml;
+            
+        }).join('\n');
+        
+
+        let fullCard = `
+            <div>
+            <div>Day ${mday}</div>
+            ${dailyCard}
+</div>
+`;
+        return fullCard;
+
+        
+    }).join('\n');
+    i += 1;
+    return fullCard;
+}
+
+function ScheduleCard(){
+    const [apiData, setData] = useState(null);
+    let seasonId = "CODML2026S1";
+    async function getData() {
+        const data = await ScheduleHelper(seasonId);
+        setData(data);
+        console.log(data);
+    }
+
+    useEffect(() => {
+        getData();
+    },[]);
+
+    return (
+        <div>
+            {dailyCard(apiData)}
+        </div>
+    );
+    }
+
+export default ScheduleCard
+
