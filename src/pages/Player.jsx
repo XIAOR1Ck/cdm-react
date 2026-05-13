@@ -278,7 +278,7 @@ function Player() {
       </li>
     </ul>
   </form>
-        <div className="bg-zinc-700 text-zinc-400 flex-1 overflow-auto min-h-0">
+        <div className="bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 text-zinc-400 flex-1 overflow-auto min-h-0">
             <CreateTable data={playerData} gameMode={gameMode} />
         </div>
     </div>

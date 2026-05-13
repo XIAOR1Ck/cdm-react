@@ -5,7 +5,7 @@ import Player from "./pages/Player";
 
 function App() {
     return(
-        <div>
+        <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
     <nav className="bg-zinc-700 text-white px-2 flex items-center justify-between h-15 lg:text-xl shrink-0">
          <div className="flex gap-3">   
                 <span><Link to="/" className="hover:text-yellow-500">Home</Link></span>
